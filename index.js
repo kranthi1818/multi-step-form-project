@@ -1,126 +1,136 @@
-// let nextBtn = document.querySelector('#next-step')
-// let backBtn = document.querySelector('#go-back')
-
-// let personalInfo = document.querySelector('.personal-container')
-// let selectPlanContainer = document.querySelector('.select-your-plan')
-// let addOnsContainer = document.querySelector('.pick-addons')
-// let summaryContainer = document.querySelector('.summary')
-
-// let numberOne = document.getElementById('number-one')
-// let numnberTwo = document.getElementById('number-two')
-// let numberThree = document.getElementById('number-three')
-
-// let page = 1;
-// nextBtn.addEventListener('click',nextBtnFunctionality)
-
-// function nextBtnFunctionality(){
-//     page++
-//     if(page == 2){
-//         personalInfo.classList.add('hidden')
-//         selectPlanContainer.classList.remove('hidden')
-//         selectPlanContainer.classList.add('block')
-//         backBtn.classList.remove('invisible')
-//         numberOne.classList.remove('bg-blue-300')
-//         numnberTwo.classList.add('bg-blue-300')
-
-//         addOnsContainer.classList.add('hidden')
-//     }
-//     if(page == 3){
-//         selectPlanContainer.classList.add('hidden')
-//         addOnsContainer.classList.remove('hidden')
-//         addOnsContainer.classList.add('block')
-//         numnberTwo.classList.remove('bg-blue-300')
-
-//         numberThree.classList.add('bg-blue-300')
-//     }
-//     if(page == 4){
-//         addOnsContainer.classList.add('hidden')
-//         summaryContainer.classList.remove('hidden')
-
-//     }
-// }
-
-// backBtn.addEventListener('click',backBtnFunctionality)
-
-// function backBtnFunctionality(){
-//     if(page > 1){
-//         page--
-//     }
-
-//     if(page == 1){
-//         personalInfo.classList.remove('hidden')
-//         personalInfo.classList.add('block')
-//         selectPlanContainer.classList.remove('block')
-//         selectPlanContainer.classList.add('hidden')
-//         backBtn.classList.add('invisible')
-//         numnberTwo.classList.remove('bg-blue-300')
-//         numberOne.classList.add('bg-blue-300')
-
-//         addOnsContainer.classList.remove('block')
-//         addOnsContainer.classList.add('hidden')
-
-//     }
-//     if(page == 2){
-//         selectPlanContainer.classList.remove('hidden')
-//         selectPlanContainer.classList.add('block')
-
-//         addOnsContainer.classList.remove('block')
-//         addOnsContainer.classList.add('hidden')
-//         numnberTwo.classList.add('bg-blue-300')
-//         numberThree.classList.remove('bg-blue-300')
-
-//     }
-
-// }
-
 let nextBtn = document.querySelector("#next-step")
 let backBtn = document.querySelector("#go-back")
-let sections = [
+
+let numbersBg = [
+  document.getElementById("number-one"),
+  document.getElementById("number-two"),
+  document.getElementById("number-three"),
+  document.getElementById("number-four"),
+]
+let containers = [
   document.querySelector(".personal-container"),
   document.querySelector(".select-your-plan"),
   document.querySelector(".pick-addons"),
   document.querySelector(".summary"),
 ]
-let indicators = [
-  document.getElementById("number-one"),
-  document.getElementById("number-two"),
-  document.getElementById("number-three"),
-  document.getElementById("number-four")
-]
+let monthYearCheckbox = document.getElementById('switch-component')
+let pageCount = 0
 
-let thankYouContainer = document.querySelector('.thank-you-container')
 
-let page = 0
 
+nextBtn.addEventListener("click", function () {
+  if (pageCount === 0) {
+    if (!validateForm()) {
+      return
+    }
+  }
+
+  if (pageCount < containers.length) {
+    pageCount++
+    updateUI()
+   
+  }
+  
+})
+
+backBtn.addEventListener("click", function () {
+  if (pageCount > 0) {
+    pageCount--
+    updateUI()
+  }
+})
 function updateUI() {
-  sections.forEach((section, index) => {
-    section.classList.toggle("hidden", index !== page)
-    section.classList.toggle("block", index === page)
-  })
-  indicators.forEach((indicator, index) => {
-    if (indicator) {
-      indicator.classList.toggle("bg-blue-300", index === page )
+  pageCount == 0
+    ? backBtn.classList.add("invisible")
+    : backBtn.classList.remove("invisible")
+
+  containers.forEach((container, index) => {
+    if (index == pageCount) {
+      container.classList.remove("hidden")
+    } else {
+      container.classList.add("hidden")
     }
   })
-  backBtn.classList.toggle("invisible", page === 0)
 
-  backBtn.classList.toggle('hidden',page == 4)
-  nextBtn.classList.toggle('hidden',page == 4)
-
+  numbersBg.forEach((number, index) => {
+    if (index == pageCount) {
+      number.classList.add("bg-cyan-500")
+    } else {
+      number.classList.remove("bg-cyan-500")
+    }
+  })
 }
 
-nextBtn.addEventListener("click", () => {
-  if (page < sections.length) {
-    page++
-    updateUI()
-  }
-})
+function validateForm() {
+  let isValid = true
 
-backBtn.addEventListener("click", () => {
-  if (page > 0) {
-    page--
-    updateUI()
-  }
-})
+  let nameInput = document.getElementById("name")
+  let emailInput = document.getElementById("email")
+  let phoneInput = document.getElementById("phone-number")
 
-updateUI()
+
+  if (nameInput.value.trim() == "") {
+    printError("name-error", "The field is required")
+    isValid = false
+  } else {
+    let regex = /^.{3,}$/
+    if (!regex.test(nameInput.value)) {
+      printError("name-error", "Minimum 3 characters required")
+      isValid = false
+    } else {
+      printError("name-error", "")
+    }
+  }
+  if (emailInput.value.trim() == "") {
+    printError("email-error", "The field is required")
+    isValid = false
+  } else {
+    let regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/
+    if (!regex.test(emailInput.value)) {
+      printError("email-error", "invalid email address")
+      isValid = false
+    } else {
+      printError("email-error", "")
+
+    }
+  }
+  if (phoneInput.value.trim() == "") {
+    printError("phone-error", "The field is required")
+    isValid = false
+  } else {
+    let onlyNUmbers = /^[0-9]*$/
+    let numberLength = /^[0-9]{4,10}$/
+    if (!onlyNUmbers.test(phoneInput.value)) {
+      printError("phone-error", "invalid character in phone number")
+      isValid = false
+    } else if(!numberLength.test(phoneInput.value)){
+      printError('phone-error','Minimum 3 characters required')
+      isValid = false
+    } else {
+      printError("phone-error", "")
+    }
+  }
+  return isValid
+}
+
+function printError(eleid, msg) {
+  document.getElementById(eleid).innerText = msg
+}
+
+
+monthYearCheckbox.addEventListener("change", checkPlanMonthYear);
+checkPlanMonthYear()
+function checkPlanMonthYear(){
+    let yearContent = document.querySelectorAll('.yearContent')
+  if(monthYearCheckbox.checked){
+    yearContent.forEach((ele)=>{
+      ele.classList.remove('hidden')
+      ele.classList.add('block')
+    })
+  }else{
+    yearContent.forEach((ele)=>{
+      ele.classList.remove('block')
+      ele.classList.add('hidden')
+    })    
+  }
+}

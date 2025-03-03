@@ -19,12 +19,12 @@
             <div class="flex align-middle space-x-3">
               <div
                 id="number-one"
-                class="numbers bg-blue-300 border-1 text-center flex items-center justify-center rounded-full p-4.5 w-8 h-8"
+                class="numbers bg-cyan-500 border-1 text-center flex items-center justify-center rounded-full p-4.5 w-8 h-8"
               >
                 1
               </div>
               <div class="numbers-details">
-                <div id="number-one" class="text-gray-400 text-m">STEP 1</div>
+                <div class="text-gray-400 text-m">STEP 1</div>
                 <div class="font-bold">USER INFO</div>
               </div>
             </div>
@@ -41,7 +41,8 @@
               </div>
             </div>
             <div class="flex align-middle space-x-3">
-              <div id="number-three"
+              <div
+                id="number-three"
                 class="numbers border-1 text-center flex items-center justify-center rounded-full p-4.5 w-8 h-8"
               >
                 3
@@ -53,7 +54,8 @@
             </div>
 
             <div class="flex align-middle space-x-3">
-              <div id="number-four"
+              <div
+                id="number-four"
                 class="numbers border-1 text-center flex items-center justify-center rounded-full p-4.5 w-8 h-8"
               >
                 4
@@ -78,24 +80,37 @@
                   </p>
                 </div>
                 <div>
-                  <h3 class="font-bold text-m text-blue-900">Name</h3>
-                  <input
+                  <div class="flex justify-between text-sm font-bold  mb-1">
+                    <h3  class="font-bold text-m text-blue-900">Name</h3>
+                    <span id="name-error" class="text-red-500"></span>
+                  </div>
+                  <input id="name"
                     type="text"
                     placeholder="e.g.Stephen King"
                     class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
                   />
                 </div>
                 <div>
-                  <h3 class="font-bold text-m text-blue-900">Email Address</h3>
-                  <input
+                 <div class="flex justify-between text-sm font-bold  mb-1">
+                  <h3  class="font-bold text-m text-blue-900">
+                    Email Address
+                  </h3>
+                  <span id="email-error" class="text-red-500"></span>
+                 </div>
+                  <input id="email"
                     type="email"
                     placeholder="e.g.Stephenking@lorem.com"
                     class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
                   />
                 </div>
                 <div>
-                  <h3 class="font-bold text-m text-blue-900">Phone Number</h3>
-                  <input
+                 <div class="flex justify-between text-sm font-bold mb-1">
+                  <h3  class="font-bold text-m text-blue-900">
+                    Phone Number
+                  </h3>
+                  <span id="phone-error" class="text-red-500"></span>
+                 </div>
+                  <input id="phone-number"
                     type="text"
                     placeholder="e.g. +1234567890"
                     class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
@@ -104,7 +119,7 @@
               </div>
             </div>
             <div class="select-your-plan hidden pt-10 pl-8 pr-5 w-full">
-              <div class="mb-10">
+              <div class="mb-7">
                 <h3 class="font-bold text-4xl text-blue-900 mb-2">
                   Select your plan
                 </h3>
@@ -112,7 +127,7 @@
                   You have the option of monthly or yearly billing.
                 </p>
               </div>
-              <div class="cards flex flex-row gap-2">
+              <div class="cards flex flex-row gap-2 mb-5 min-h-43">
                 <div
                   class="first-card p-4 border-1 border-gray-500 rounded-sm flex flex-col flex-1"
                 >
@@ -122,7 +137,7 @@
                   <div>
                     <h3 class="font-bold text-blue-900">Arcade</h3>
                     <p class="text-gray-500 text-sm">$9/mo</p>
-                    <p class="text-sm font-bold text-blue-900 text-nowrap">
+                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
                       2 months free
                     </p>
                   </div>
@@ -137,7 +152,7 @@
                   <div>
                     <h3 class="font-bold text-blue-900">Advanced</h3>
                     <p class="text-gray-500 text-sm">$12/mo</p>
-                    <p class="text-sm font-bold text-blue-900 text-nowrap">
+                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
                       2 months free
                     </p>
                   </div>
@@ -152,18 +167,24 @@
                   <div>
                     <h3 class="font-bold text-blue-900">Pro</h3>
                     <p class="text-gray-500 text-sm">$15/mo</p>
-                    <p class="text-sm font-bold text-blue-900 text-nowrap">
+                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
                       2 months free
                     </p>
                   </div>
                 </div>
               </div>
               <div
-                class="toggle-container flex justify-center w-full bg-gray-300 mt-5"
+                class="toggle-container flex justify-center items-center space-x-2 w-full bg-gray-300 mt-5 h-15 rounded-sm p-4"
               >
-                <div>Monthly</div>
-                <div></div>
-                <div>Yearly</div>
+                <div class="mb-2 font-bold text-blue-900  text-sm">Monthly</div>
+                                
+                  <div class="relative inline-block ">
+                    <input checked id="switch-component" type="checkbox" class="peer appearance-none w-8 h-4.5 bg-slate-100 rounded-full checked:bg-blue-950 cursor-pointer transition-colors duration-300" />
+                    <label for="switch-component" class="absolute top-0 left-0 w-4 h-4 bg-white rounded-full border border-slate-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-4 peer-checked:border-blue-800 cursor-pointer">
+                    </label>
+                  </div>
+               
+                <div class="mb-2 font-bold text-blue-900  text-sm">Yearly</div>
               </div>
             </div>
 
@@ -191,34 +212,33 @@
                   <p class="text-blue-500 text-sm">+$10/yr</p>
                 </div>
                 <div
-                class="flex justify-between items-center p-3 border-1 rounded-sm"
-              >
-                <div class="flex gap-5 justify-center items-center">
-                  <input type="checkbox" class="w-5 h-5" />
-                  <div>
-                    <p class="font-bold text-blue-900">Larger storage
-                    </p>
-                    <p class="text-gray-500 text-sm">
-                      Extra 1TB cloud save
-                    </p>
+                  class="flex justify-between items-center p-3 border-1 rounded-sm"
+                >
+                  <div class="flex gap-5 justify-center items-center">
+                    <input type="checkbox" class="w-5 h-5" />
+                    <div>
+                      <p class="font-bold text-blue-900">Larger storage</p>
+                      <p class="text-gray-500 text-sm">Extra 1TB cloud save</p>
+                    </div>
                   </div>
+                  <p class="text-blue-500 text-sm">+$20/yr</p>
                 </div>
-                <p class="text-blue-500 text-sm">+$20/yr</p>
-              </div>
-              <div
-              class="flex justify-between items-center p-3 border-1 rounded-sm"
-            >
-              <div class="flex gap-5 justify-center items-center">
-                <input type="checkbox" class="w-5 h-5" />
-                <div>
-                  <p class="font-bold text-blue-900">Customizable profile</p>
-                  <p class="text-gray-500 text-sm">
-                    Custom theme on your profile
-                  </p>
+                <div
+                  class="flex justify-between items-center p-3 border-1 rounded-sm"
+                >
+                  <div class="flex gap-5 justify-center items-center">
+                    <input type="checkbox" class="w-5 h-5" />
+                    <div>
+                      <p class="font-bold text-blue-900">
+                        Customizable profile
+                      </p>
+                      <p class="text-gray-500 text-sm">
+                        Custom theme on your profile
+                      </p>
+                    </div>
+                  </div>
+                  <p class="text-blue-500 text-sm">+$10/yr</p>
                 </div>
-              </div>
-              <p class="text-blue-500 text-sm">+$10/yr</p>
-            </div>
               </div>
             </div>
 
@@ -231,16 +251,13 @@
               </p>
             </div>
 
-            <div class="thank-you-container hidden">
-
-            </div>
+            <div class="thank-you-container hidden"></div>
           </form>
           <div class="flex justify-between w-full pt-5 pl-10 pr-10 pb-5">
             <button id="go-back" class="text-gray-500 cursor-pointer invisible">
               Go back
             </button>
             <button
-              type="submit"
               id="next-step"
               class="bg-blue-900 p-2 text-white rounded-sm cursor-pointer"
             >
