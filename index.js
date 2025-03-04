@@ -65,6 +65,7 @@ if (pageCount > 0) {
   if (pageCount === 2) {
     addOnContainerPrice();
   }
+
 }
 })
 
@@ -477,9 +478,12 @@ function finishPageDisplayPrice(){
 
 let changeBtn = document.querySelector('.changeTOPlan')
 function goToPlanPage(){
-  
+  changeBtn.addEventListener('click',function(){
+    pageCount = 1
+    updateUI()
+  })
 }
-
+goToPlanPage()
 updateUI()
 updatePrices()
 highlightSelectedPlan()
