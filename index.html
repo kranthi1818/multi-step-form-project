@@ -80,40 +80,41 @@
                   </p>
                 </div>
                 <div>
-                  <div class="flex justify-between text-sm font-bold  mb-1">
-                    <h3  class="font-bold text-m text-blue-900">Name</h3>
+                  <div class="flex justify-between text-sm font-bold mb-1">
+                    <h3 class="font-bold text-m text-blue-900">Name</h3>
                     <span id="name-error" class="text-red-500"></span>
                   </div>
-                  <input id="name"
+                  <input
+                    id="name"
                     type="text"
                     placeholder="e.g.Stephen King"
-                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
+                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm focus:border-2 focus:border-blue-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                 <div class="flex justify-between text-sm font-bold  mb-1">
-                  <h3  class="font-bold text-m text-blue-900">
-                    Email Address
-                  </h3>
-                  <span id="email-error" class="text-red-500"></span>
-                 </div>
-                  <input id="email"
+                  <div class="flex justify-between text-sm font-bold mb-1">
+                    <h3 class="font-bold text-m text-blue-900">
+                      Email Address
+                    </h3>
+                    <span id="email-error" class="text-red-500"></span>
+                  </div>
+                  <input
+                    id="email"
                     type="email"
                     placeholder="e.g.Stephenking@lorem.com"
-                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
+                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm focus:border-2 focus:border-blue-500 focus:outline-none"
                   />
                 </div>
                 <div>
-                 <div class="flex justify-between text-sm font-bold mb-1">
-                  <h3  class="font-bold text-m text-blue-900">
-                    Phone Number
-                  </h3>
-                  <span id="phone-error" class="text-red-500"></span>
-                 </div>
-                  <input id="phone-number"
+                  <div class="flex justify-between text-sm font-bold mb-1">
+                    <h3 class="font-bold text-m text-blue-900">Phone Number</h3>
+                    <span id="phone-error" class="text-red-500"></span>
+                  </div>
+                  <input
+                    id="phone-number"
                     type="text"
                     placeholder="e.g. +1234567890"
-                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm"
+                    class="border-gray-300 border-2 w-full rounded-sm p-2 text-sm focus:border-2 focus:border-blue-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -127,64 +128,88 @@
                   You have the option of monthly or yearly billing.
                 </p>
               </div>
-              <div class="cards flex flex-row gap-2 mb-5 min-h-43">
-                <div
-                  class="first-card p-4 border-1 border-gray-500 rounded-sm flex flex-col flex-1"
-                >
-                  <div class="mb-9">
-                    <img src="./assets/first.svg" alt="icon not found" />
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-blue-900">Arcade</h3>
-                    <p class="text-gray-500 text-sm">$9/mo</p>
-                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
-                      2 months free
-                    </p>
-                  </div>
+              <div class="plan-container cards flex flex-row gap-2 mb-5 w-full ">
+                <div class="plans flex flex-grow w-2 selected border-blue-300">
+                  <input checked type="radio" id="arcade" name="plan" class="peer sr-only"/>
+                  <section
+                    class="hover:border-blue-500 hover:border-2 first-card p-4 border-2 border-blue-400 rounded-sm flex flex-col flex-1"
+                  >
+                    <div class="mb-9">
+                      <img src="./assets/first.svg" alt="icon not found" />
+                    </div>
+                    <div>
+                      <h3 class="planName font-bold text-blue-900">Arcade</h3>
+                      <p id="arcade-price" class="text-gray-500 text-sm"></p>
+                      <p
+                        class="yearContent text-sm font-bold text-blue-900 text-nowrap"
+                      >
+                        2 months free
+                      </p>
+                    </div>
+                  </section>
                 </div>
 
-                <div
-                  class="second-card p-4 border-1 border-gray-500 rounded-sm flex flex-col flex-1"
-                >
-                  <div class="mb-9">
-                    <img src="./assets/second.svg" alt="icon not found" />
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-blue-900">Advanced</h3>
-                    <p class="text-gray-500 text-sm">$12/mo</p>
-                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
-                      2 months free
-                    </p>
-                  </div>
+                <div class="plans flex flex-grow w-2">
+                  <input  checked type="radio" id="advanced" name="plan" class="peer sr-only"/>
+                  <section
+                    class="hover:border-blue-500 hover:border-2 second-card p-4 border-2 border-gray-500 rounded-sm flex flex-col flex-1"
+                  >
+                    <div class="mb-9">
+                      <img src="./assets/second.svg" alt="icon not found" />
+                    </div>
+                    <div>
+                      <h3 class="planName font-bold text-blue-900">Advanced</h3>
+                      <p id="advanced-price" class="text-gray-500 text-sm"></p>
+                      <p
+                        class="yearContent text-sm font-bold text-blue-900 text-nowrap"
+                      >
+                        2 months free
+                      </p>
+                    </div>
+                  </section>
                 </div>
 
-                <div
-                  class="third-card p-4 border-1 border-gray-500 rounded-sm flex flex-col flex-1"
-                >
-                  <div class="mb-9">
-                    <img src="./assets/third.svg" alt="icon not found" />
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-blue-900">Pro</h3>
-                    <p class="text-gray-500 text-sm">$15/mo</p>
-                    <p class="yearContent text-sm font-bold text-blue-900 text-nowrap">
-                      2 months free
-                    </p>
-                  </div>
+                <div class="plans flex flex-grow w-2">
+                  <input checked type="radio" id="pro" name="plan" class="peer sr-only"/>
+                  <section
+                    class="hover:border-blue-500 hover:border-2 third-card p-4 border-2 border-gray-500 rounded-sm flex flex-col flex-1"
+                  >
+                    <div class="mb-9">
+                      <img src="./assets/third.svg" alt="icon not found" />
+                    </div>
+                    <div>
+                      <h3 class="planName font-bold text-blue-900">Pro</h3>
+                      <p id="pro-price" class="text-gray-500 text-sm"></p>
+                      <p
+                        class="yearContent text-sm font-bold text-blue-900 text-nowrap"
+                      >
+                        2 months free
+                      </p>
+                    </div>
+                  </section>
                 </div>
               </div>
               <div
-                class="toggle-container flex justify-center items-center space-x-2 w-full bg-gray-300 mt-5 h-15 rounded-sm p-4"
+                class="toggle-container flex justify-center items-center space-x-2 w-full bg-blue-100 mt-5 h-15 rounded-sm p-4"
               >
-                <div class="mb-2 font-bold text-blue-900  text-sm">Monthly</div>
-                                
-                  <div class="relative inline-block ">
-                    <input checked id="switch-component" type="checkbox" class="peer appearance-none w-8 h-4.5 bg-slate-100 rounded-full checked:bg-blue-950 cursor-pointer transition-colors duration-300" />
-                    <label for="switch-component" class="absolute top-0 left-0 w-4 h-4 bg-white rounded-full border border-slate-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-4 peer-checked:border-blue-800 cursor-pointer">
-                    </label>
-                  </div>
-               
-                <div class="mb-2 font-bold text-blue-900  text-sm">Yearly</div>
+                <div class="month mb-2 font-bold text-blue-900 text-sm">
+                  Monthly
+                </div>
+
+                <div class="relative inline-block">
+                  <input
+                    id="switch-component"
+                    type="checkbox"
+                    class="peer appearance-none w-8 h-4.5 bg-slate-100 rounded-full checked:bg-blue-950 cursor-pointer transition-colors duration-300"
+                  />
+                  <label
+                    for="switch-component"
+                    class="absolute top-0 left-0 w-4 h-4 bg-white rounded-full border border-slate-300 shadow-sm transition-transform duration-300 peer-checked:translate-x-4 peer-checked:border-blue-800 cursor-pointer"
+                  >
+                  </label>
+                </div>
+
+                <div class="mb-2 font-bold text-blue-900 text-sm">Yearly</div>
               </div>
             </div>
 
@@ -196,49 +221,59 @@
                 Add-ons help to enhance your gaming experience.
               </p>
 
-              <div class="flex flex-col gap-3">
-                <div
-                  class="flex justify-between items-center p-3 border-1 rounded-sm"
+              <div class="addon-container flex flex-col gap-3">
+                <label
+                  class="hover:border-blue-500 hover:border-1 flex justify-between items-center p-3 border-1 rounded-sm outline-none border-gray-500"
                 >
                   <div class="flex gap-5 justify-center items-center">
-                    <input type="checkbox" class="w-5 h-5" />
+                    <input 
+                      id="checkbox1"
+                      type="checkbox"
+                      class="w-5 h-5"
+                    />
                     <div>
-                      <p class="font-bold text-blue-900">Online service</p>
+                      <p class="addOnText font-bold text-blue-900">Online service</p>
                       <p class="text-gray-500 text-sm">
                         Access to multiplayer games
                       </p>
                     </div>
                   </div>
-                  <p class="text-blue-500 text-sm">+$10/yr</p>
-                </div>
-                <div
-                  class="flex justify-between items-center p-3 border-1 rounded-sm"
+                  <p class="price online-price text-blue-500 text-sm"></p>
+                </label>
+                <label
+                  class="hover:border-blue-500 hover:border-1 flex justify-between items-center p-3 border-1 rounded-sm"
                 >
                   <div class="flex gap-5 justify-center items-center">
-                    <input type="checkbox" class="w-5 h-5" />
+                    <input id="checkbox2" type="checkbox" class="w-5 h-5" />
                     <div>
-                      <p class="font-bold text-blue-900">Larger storage</p>
+                      <p class="addOnText font-bold text-blue-900">Larger storage</p>
                       <p class="text-gray-500 text-sm">Extra 1TB cloud save</p>
                     </div>
                   </div>
-                  <p class="text-blue-500 text-sm">+$20/yr</p>
-                </div>
-                <div
-                  class="flex justify-between items-center p-3 border-1 rounded-sm"
+                  <p class="price large-storage text-blue-500 text-sm"></p>
+                </label>
+                <label
+                  class="hover:border-blue-500 hover:border-1 flex justify-between items-center p-3 border-1 rounded-sm"
                 >
                   <div class="flex gap-5 justify-center items-center">
-                    <input type="checkbox" class="w-5 h-5" />
+                    <input
+                      id="checkbox3"
+                      type="checkbox"
+                      class="w-5 h-5"
+                    />
                     <div>
-                      <p class="font-bold text-blue-900">
+                      <p class="addOnText font-bold text-blue-900">
                         Customizable profile
                       </p>
-                      <p class="text-gray-500 text-sm">
+                      <p class=" text-gray-500 text-sm">
                         Custom theme on your profile
                       </p>
                     </div>
                   </div>
-                  <p class="text-blue-500 text-sm">+$10/yr</p>
-                </div>
+                  <p
+                    class="price Customizable-profile text-blue-500 text-sm"
+                  ></p>
+                </label>
               </div>
             </div>
 
@@ -249,6 +284,39 @@
               <p class="text-sm text-gray-500 mb-6">
                 Double-check everything looks OK before confirming.
               </p>
+            <div class="flex  flex-col mt-3 ">
+              <div class="flex justify-between p-8 bg-blue-50 rounded-sm">
+                <div>
+                 <div class="final-plan font-bold text-xl"></div>
+                 <div class="underline text-gray-400">Change</div>
+                </div>
+                <div class="final-price text-black font-bold text-xl mt-3"></div>
+             </div>
+             <div class="final-inner-container bg-blue-50 flex flex-col">
+              
+             </div>  
+            <div>
+              <div class=" text-gray-400 p-7 flex">Total(per month)</div>
+              <div class="total-price"></div>
+            </div>
+            </div>
+            </div>
+
+            <div class="thankyou-conatiner hidden h-full">
+              <div
+                class="flex flex-col justify-center items-center h-full p-8 mt-17"
+              >
+                <img
+                  src="./assets/icon-thank-you.56c10800.svg"
+                  alt="image not found"
+                />
+                <h2 class="text-3xl font-bold mt-5 mb-2">Thank You!</h2>
+                <p class="text-center text-gray-500">
+                  Thanks for confirming your subscription! We hope you have fun
+                  using our platform. If you ever need support, please feel free
+                  to email us at support@loremgaming.com.
+                </p>
+              </div>
             </div>
 
             <div class="thank-you-container hidden"></div>
