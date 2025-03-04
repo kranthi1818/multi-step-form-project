@@ -22,11 +22,11 @@ let pageCount = 0
 
 nextBtn.addEventListener("click", function () {
 
-  if (pageCount === 0) {
-  if (!validateForm()) {
-    return
-  }
-}
+  // if (pageCount === 0) {
+  // if (!validateForm()) {
+  //   return
+  // }
+// }
 if (pageCount < containers.length) {
   pageCount++;
   updateUI();
@@ -69,68 +69,68 @@ if (pageCount > 0) {
 })
 
 
-function validateForm() {
-  let isValid = true
+// function validateForm() {
+//   let isValid = true
 
-  let nameInput = document.getElementById("name")
-  let emailInput = document.getElementById("email")
-  let phoneInput = document.getElementById("phone-number")
+//   let nameInput = document.getElementById("name")
+//   let emailInput = document.getElementById("email")
+//   let phoneInput = document.getElementById("phone-number")
 
-  if (nameInput.value.trim() == "") {
-    printError("name-error", "The field is required")
-    isValid = false
-  } else {
-    let regex = /^.{3,}$/
-    if (!regex.test(nameInput.value)) {
-      printError("name-error", "Minimum 3 characters required")
-      isValid = false
-    } else {
-      printError("name-error", "")
-    }
-  }
-  if (emailInput.value.trim() == "") {
-    printError("email-error", "The field is required")
-    isValid = false
-  } else {
-    let regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/
-    if (!regex.test(emailInput.value)) {
-      printError("email-error", "invalid email address")
-      isValid = false
-    } else {
-      printError("email-error", "")
-    }
-  }
-  if (phoneInput.value.trim() == "") {
-    printError("phone-error", "The field is required")
-    isValid = false
-  } else {
-    let onlyNUmbers = /^[0-9]*$/
-    let numberLength = /^[0-9]{4,10}$/
-    if (!onlyNUmbers.test(phoneInput.value)) {
-      printError("phone-error", "invalid character in phone number")
-      isValid = false
-    } else if (!numberLength.test(phoneInput.value)) {
-      printError("phone-error", "Minimum 3 characters required")
-      isValid = false
-    } else {
-      printError("phone-error", "")
-    }
-  }
+//   if (nameInput.value.trim() == "") {
+//     printError("name-error", "The field is required")
+//     isValid = false
+//   } else {
+//     let regex = /^.{3,}$/
+//     if (!regex.test(nameInput.value)) {
+//       printError("name-error", "Minimum 3 characters required")
+//       isValid = false
+//     } else {
+//       printError("name-error", "")
+//     }
+//   }
+//   if (emailInput.value.trim() == "") {
+//     printError("email-error", "The field is required")
+//     isValid = false
+//   } else {
+//     let regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/
+//     if (!regex.test(emailInput.value)) {
+//       printError("email-error", "invalid email address")
+//       isValid = false
+//     } else {
+//       printError("email-error", "")
+//     }
+//   }
+//   if (phoneInput.value.trim() == "") {
+//     printError("phone-error", "The field is required")
+//     isValid = false
+//   } else {
+//     let onlyNUmbers = /^[0-9]*$/
+//     let numberLength = /^[0-9]{4,10}$/
+//     if (!onlyNUmbers.test(phoneInput.value)) {
+//       printError("phone-error", "invalid character in phone number")
+//       isValid = false
+//     } else if (!numberLength.test(phoneInput.value)) {
+//       printError("phone-error", "Minimum 3 characters required")
+//       isValid = false
+//     } else {
+//       printError("phone-error", "")
+//     }
+//   }
 
-  return isValid
-}
+//   return isValid
+// }
 
-function printError(eleid, msg) {
-  document.getElementById(eleid).innerText = msg
-  let id = document.getElementById(eleid)
-  if (msg === "") {
-    id.classList.remove("border-red-400", "focus:border-red-500")
-    id.classList.add("border-blue-500")
-  } else {
-    id.classList.add("border-red-400")
-    id.classList.remove("border-blue-500", "focus:border-red-500")
-  }
-}
+// function printError(eleid, msg) {
+//   document.getElementById(eleid).innerText = msg
+//   let id = document.getElementById(eleid)
+//   if (msg === "") {
+//     id.classList.remove("border-red-400", "focus:border-red-500")
+//     id.classList.add("border-blue-500")
+//   } else {
+//     id.classList.add("border-red-400")
+//     id.classList.remove("border-blue-500", "focus:border-red-500")
+//   }
+// }
 
 //display error
 monthYearCheckbox.addEventListener("change", checkPlanMonthYear)
@@ -416,6 +416,9 @@ function finishPageDisplayPrice(){
   let finalPlan = document.querySelector('.final-plan')
   let finalPrice = document.querySelector('.final-price')
   let finalInnerContainer = document.querySelector('.final-inner-container')
+  let totalPriceElement = document.querySelector('.total-price')
+  let totalText = document.querySelector('.TotalText')
+  
 
   let monthOrYear = userDetails.selectedPlan.isMonthly
   finalInnerContainer.innerHTML = "";
@@ -423,11 +426,23 @@ function finishPageDisplayPrice(){
   if(monthOrYear){
     finalPlan.innerText = `${userDetails.selectedPlan.plan} (Yearly)`
     finalPrice.innerText = userDetails.selectedPlan.priceYearly
+    totalText.innerText = `Total(Yearly)`
   } else {
     finalPlan.innerText = `${userDetails.selectedPlan.plan} (Monthly)`
     finalPrice.innerText = userDetails.selectedPlan.priceMonthly
+    totalText.innerText = `Total(Monthly)`
   }
+  //
+  let basePrice = parseInt((monthOrYear ? userDetails.selectedPlan.priceYearly : userDetails.selectedPlan.priceMonthly).replace('$', ""));
+  let totalPrice = basePrice;
 
+  finalPrice.innerText = `$${basePrice}${monthOrYear ? "/yr" : "/mo"}`;
+
+  if (userDetails.addOnPlans.length === 0) {
+    totalPriceElement.innerText = ` $${totalPrice}${monthOrYear ? "/yr" : "/mo"}`;
+    return;
+  }
+  //
   if(userDetails.addOnPlans.length == 0) return
 
   for(let index = 0; index < userDetails.addOnPlans.length; index++){
@@ -440,21 +455,29 @@ function finishPageDisplayPrice(){
     pPrice.classList.add('font-bold')
 
     let bothContentPrice = document.createElement('div')
-    bothContentPrice.classList.add('flex','justify-between','pl-7','pr-14')
+    bothContentPrice.classList.add('flex','justify-between','pl-7','pr-11')
 
     let addName = Object.keys(userDetails.addOnPlans[index])[0]
     let addOnPrice = userDetails.addOnPlans[index][addName];
+    //
+    let addOnPriceValue = parseInt(addOnPrice.replace('$', ""));
+    totalPrice += addOnPriceValue;
+    //
     pContent.append(addName)
     pPrice.append(addOnPrice)
     bothContentPrice.append(pContent)
     bothContentPrice.append(pPrice)
 
     finalInnerContainer.append(bothContentPrice)
-
-   let totalPrice =  document.querySelector('.total-price')
-
-
   }
+    totalPriceElement.innerText = `$${totalPrice}${monthOrYear ? "/yr" : "/mo"}`;
+
+  
+}
+
+let changeBtn = document.querySelector('.changeTOPlan')
+function goToPlanPage(){
+  
 }
 
 updateUI()
